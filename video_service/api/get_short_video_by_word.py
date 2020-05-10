@@ -3,6 +3,7 @@ from urllib.parse import parse_qs, urlparse
 from pytube import YouTube
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from transliterate import translit
 from youtube_transcript_api import YouTubeTranscriptApi
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
@@ -29,7 +30,7 @@ def get_short_video_by_word(request):
         url = YouTube(video_link).streams.first().download(tempdir)
         result = ''
         for time_period in time_periods:
-            name = '{}_{}.mp4'.format(word, time_period['start'])
+            name = '{}_{}.mp4'.format(translit(word), time_period['start'])
             path = '{}/{}'.format(MEDIA_ROOT, name)
             ffmpeg_extract_subclip(
                 url,
