@@ -13,11 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from video_service import api, settings
 from video_service.views import index
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+
+api_patterns = [
+    path('short_video.get/', api.get_short_video_by_word)
+]
 
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
+    path('api/', include(api_patterns)),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
