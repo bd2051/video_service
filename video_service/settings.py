@@ -25,7 +25,7 @@ SECRET_KEY = 'agcp-z5=+37f7!rt!wlvvu2ro7aaps@7ouh#ug-0f(@8xbtjyd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['videoservice.space', 'www.videoservice.space', '127.0.0.1', 'localhost']
 
 
 # Application definition
