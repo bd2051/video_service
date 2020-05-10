@@ -25,7 +25,7 @@ SECRET_KEY = 'agcp-z5=+37f7!rt!wlvvu2ro7aaps@7ouh#ug-0f(@8xbtjyd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['videoservice.space', 'www.videoservice.space', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -118,5 +118,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = 'video_service/static'
+STATIC_URL = '/video_service/static/'
+STATIC_ROOT = 'static'
