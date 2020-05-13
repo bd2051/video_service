@@ -1,5 +1,7 @@
 import tempfile
 from urllib.parse import parse_qs, urlparse
+
+from django.utils.text import slugify
 from pytube import YouTube
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -30,7 +32,7 @@ def get_short_video_by_word(request):
         url = YouTube(video_link).streams.first().download(tempdir)
         result = ''
         for time_period in time_periods:
-            name = '{}_{}.mp4'.format(translit(word, reversed=True), time_period['start'])
+            name = '{}_{}.mp4'.format(slugify(translit(word, reversed=True)), time_period['start'])
             path = '{}/{}'.format(MEDIA_ROOT, name)
             ffmpeg_extract_subclip(
                 url,
